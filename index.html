@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discrete Math</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a class="brand" href="#home" data-page="home">
+      <span class="brand-icon">&#8746;</span>
+      <span class="brand-name">Discrete Math</span>
+    </a>
+    <nav class="nav-links">
+      <button class="nav-btn active" data-page="home"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h4.5v-6h4v6h4.5V10"/></svg></span> Home</button>
+      <button class="nav-btn" data-page="sets"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span> Sets</button>
+      <button class="nav-btn" data-page="algorithm"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3" rx="0.8"/><circle cx="9" cy="13" r="0.6"/><circle cx="12" cy="13" r="0.6"/><circle cx="15" cy="13" r="0.6"/><circle cx="9" cy="17" r="0.6"/><circle cx="12" cy="17" r="0.6"/><circle cx="15" cy="17" r="0.6"/></svg></span> Algorithm</button>
+      <button class="nav-btn" data-page="logic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h6a7 7 0 0 1 0 14H5z"/><path d="M1.5 9H5"/><path d="M1.5 15H5"/><path d="M18 12h4.5"/></svg></span> Logic</button>
+      <button class="nav-btn" data-page="sort"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M7 13v-2"/><path d="M10 13V8"/><path d="M13 13v-4"/><path d="m15.5 15.5 5.5 5.5"/></svg></span> Sort &amp; Search</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <h1>Explore Discrete Math</h1>
+      <p class="subtitle">Pick a module and see how it's solved</p>
+      <div class="card-grid">
+        <button class="module-card accent-yellow" data-page="sets">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span>
+          <h3>Sets</h3>
+          <p>Union, intersection, difference and subsets, drawn as a Venn diagram.</p>
+        </button>
+        <button class="module-card accent-navy" data-page="algorithm">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3" rx="0.8"/><circle cx="9" cy="13" r="0.6"/><circle cx="12" cy="13" r="0.6"/><circle cx="15" cy="13" r="0.6"/><circle cx="9" cy="17" r="0.6"/><circle cx="12" cy="17" r="0.6"/><circle cx="15" cy="17" r="0.6"/></svg></span>
+          <h3>Algorithm</h3>
+          <p>GCD, LCM, factorial and primes with steps shown.</p>
+        </button>
+        <button class="module-card accent-navy" data-page="logic">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h6a7 7 0 0 1 0 14H5z"/><path d="M1.5 9H5"/><path d="M1.5 15H5"/><path d="M18 12h4.5"/></svg></span>
+          <h3>Logic</h3>
+          <p>Truth tables and logical equivalence checks.</p>
+        </button>
+        <button class="module-card accent-yellow" data-page="sort">
+          <span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M7 13v-2"/><path d="M10 13V8"/><path d="M13 13v-4"/><path d="m15.5 15.5 5.5 5.5"/></svg></span>
+          <h3>Sort &amp; Search</h3>
+          <p>Watch bubble, selection, insertion, linear and binary search step by step.</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- SETS -->
+    <section id="sets" class="page">
+      <h1>Sets Operation</h1>
+      <p class="subtitle">Enter two sets of numbers and see how sets operate.</p>
+
+      <div class="panel input-bar">
+        <div class="field">
+          <label for="setA">Set A</label>
+          <input id="setA" type="text" placeholder="Add numbers separated by comma" />
+        </div>
+        <div class="field">
+          <label for="setB">Set B</label>
+          <input id="setB" type="text" placeholder="Add numbers separated by comma" />
+        </div>
+        <button id="setsCompute" class="btn-primary">Compute</button>
+      </div>
+      <p id="setsError" class="error"></p>
+
+      <div class="two-col">
+        <div class="panel venn-panel">
+          <svg id="venn" viewBox="0 0 400 300" role="img" aria-label="Venn diagram"></svg>
+        </div>
+        <div class="panel">
+          <table class="result-table">
+            <tbody>
+              <tr><td class="op"><strong>Union</strong><small>A &cup; B</small></td><td id="rUnion" class="val">{ }</td></tr>
+              <tr><td class="op"><strong>Intersection</strong><small>A &cap; B</small></td><td id="rInter" class="val">{ }</td></tr>
+              <tr><td class="op"><strong>Difference</strong><small>A &minus; B</small></td><td id="rDiffAB" class="val">{ }</td></tr>
+              <tr><td class="op"><strong>Difference</strong><small>B &minus; A</small></td><td id="rDiffBA" class="val">{ }</td></tr>
+            </tbody>
+          </table>
+          <div class="chips">
+            <div id="chipSubset" class="chip chip-neutral">A &sube; B ?</div>
+            <div id="chipCount" class="chip chip-green"><span class="serif">0</span> subsets of A</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALGORITHM -->
+    <section id="algorithm" class="page">
+      <h1>Mathematical Algorithms</h1>
+      <p class="subtitle">Euclidean GCD, LCM, factorial and identifying if the number is prime.</p>
+
+      <div class="panel">
+        <div class="algo-inputs">
+          <div class="field">
+            <label for="valA">A value:</label>
+            <input id="valA" type="number" min="0" step="1" />
+          </div>
+          <div class="field" id="fieldB">
+            <label for="valB">B value:</label>
+            <input id="valB" type="number" min="0" step="1" />
+          </div>
+          <div class="btn-row">
+            <button id="btnGcd" class="btn-pill">GCD &amp; LCM</button>
+            <button id="btnFact" class="btn-pill">A!</button>
+            <button id="btnPrime" class="btn-pill">Is prime?</button>
+          </div>
+        </div>
+        <p id="algoError" class="error"></p>
+
+        <div class="algo-result">
+          <div class="stat-col">
+            <div class="stat"><span class="stat-label" id="statLabel1">GCD</span><span id="statGcd" class="stat-value">&ndash;</span></div>
+            <div class="stat"><span class="stat-label" id="statLabel2">LCM</span><span id="statLcm" class="stat-value">&ndash;</span></div>
+          </div>
+          <div class="steps-box">
+            <h4 id="stepsTitle">Euclidean Steps</h4>
+            <ol id="algoSteps"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIC -->
+    <section id="logic" class="page">
+      <h1>Logic and Boolean Algebra</h1>
+      <p class="subtitle">See how logic gates are being used. Use AND, OR, XOR, NOT, -&gt; and &lt;-&gt;.</p>
+
+      <div class="panel input-bar">
+        <div class="field">
+          <label for="expr1">Expression 1</label>
+          <input id="expr1" type="text" placeholder="(P -> Q) AND (Q -> R)" />
+        </div>
+        <div class="field">
+          <label for="expr2">Expression 2</label>
+          <input id="expr2" type="text" placeholder="P -> R" />
+        </div>
+        <button id="btnTruth" class="btn-primary">Truth Table</button>
+        <button id="btnEquiv" class="btn-outline">Check Equivalence</button>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h4 class="panel-title">Truth Table</h4>
+          <div id="truthWrap" class="table-scroll"><p class="muted">Enter an expression and press Truth Table.</p></div>
+        </div>
+        <div class="panel">
+          <h4 class="panel-title">Verdict</h4>
+          <div id="verdict"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SORT & SEARCH -->
+    <section id="sort" class="page">
+      <h1>Sorting and Searching</h1>
+      <p class="subtitle">Enter a list, pick an algorithm and watch how it works.</p>
+
+      <div class="panel">
+        <div class="sort-inputs">
+          <div class="field grow">
+            <label for="listNums">List numbers:</label>
+            <input id="listNums" type="text" placeholder="Add numbers separated by comma" />
+          </div>
+          <div class="field grow">
+            <label for="algoSelect">Algorithm</label>
+            <select id="algoSelect">
+              <option value="" disabled selected>Pick an algorithm</option>
+              <optgroup label="Sorting">
+                <option value="bubble">Bubble sort</option>
+                <option value="selection">Selection sort</option>
+                <option value="insertion">Insertion sort</option>
+              </optgroup>
+              <optgroup label="Searching">
+                <option value="linear">Linear search</option>
+                <option value="binary">Binary search</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="field grow">
+            <label for="targetNum">Target</label>
+            <input id="targetNum" type="number" placeholder="For searching algorithm only" />
+          </div>
+          <button id="btnRun" class="btn-primary">Run</button>
+        </div>
+        <p id="sortError" class="error"></p>
+
+        <div id="bars" class="bars"></div>
+        <div class="legend">
+          <span><i class="dot sorted"></i>Sorted</span>
+          <span><i class="dot comparing"></i>Comparing</span>
+          <span><i class="dot waiting"></i>Waiting</span>
+        </div>
+        <div id="sortLog" class="log"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
